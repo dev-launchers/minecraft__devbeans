@@ -1,0 +1,14 @@
+name: Devbeans
+version: ${project.version}
+main: com.skullzbones.devbeans.Devbeans
+api-version: 1.16
+authors: [ Harishankar_Kumar_aka_Agent_Orange ]
+description: Some Beans For You!!
+website: skullzbones.com
+commands:
+  beans:
+    description: Get Some Beans Dood!
+  test:
+    description:
+  test2:
+    description:
