@@ -25,6 +25,7 @@ public class ItemManager {
 
         ItemStack item = new ItemStack(Material.POTATO, 1);
         ItemMeta meta = item.getItemMeta();
+
         meta.setDisplayName(YELLOW+"Bean");
         List<String> lore = new ArrayList<>();
         lore.add(YELLOW+"Bean, Symbol Of Holyness!");
