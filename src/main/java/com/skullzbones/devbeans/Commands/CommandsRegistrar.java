@@ -7,6 +7,6 @@ import com.skullzbones.devbeans.Devbeans;
 public class CommandsRegistrar {
     public static void RegisterAllCommands(Devbeans devbeans){
         BeansExec.RegisterMainCommands(devbeans);
-        TestExec.RegisterMainCommands(devbeans);
+        //TestExec.RegisterMainCommands(devbeans);  //Test Purposes Uncomment
     }
 }

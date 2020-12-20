@@ -20,8 +20,8 @@ public class TestExec {
                 //GIVVE ITEM
                 sender.sendMessage("§6Run Test Command 1");
                 Player player = (Player) sender;
-                player.getInventory().addItem(ItemManager.bean);
                 player.getInventory().addItem(ItemManager.golden_bean);
+                player.getInventory().addItem(ItemManager.bean);
                 return true;
             }
         };

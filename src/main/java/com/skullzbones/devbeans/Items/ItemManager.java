@@ -25,27 +25,32 @@ public class ItemManager {
 
         ItemStack item = new ItemStack(Material.POTATO, 1);
         ItemMeta meta = item.getItemMeta();
+        meta.setCustomModelData(33);
 
         meta.setDisplayName(YELLOW+"Bean");
+
         List<String> lore = new ArrayList<>();
         lore.add(YELLOW+"Bean, Symbol Of Holyness!");
         lore.add(YELLOW+"Devlauncher's ancient history!");
         meta.setLore(lore);
-        meta.addEnchant(Enchantment.LUCK, 1, false);
+        //meta.addEnchant(Enchantment.LUCK, 1, false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         item.setItemMeta(meta);
         bean = item;
     }
 
     private static void creatgoldenBean() {
-        ItemStack item = new ItemStack(Material.BAKED_POTATO, 1);
+        ItemStack item = new ItemStack(Material.POTATO, 1);
         ItemMeta meta = item.getItemMeta();
+
+        meta.setCustomModelData(34);
+
         meta.setDisplayName(GOLD+"Golden Bean");
         List<String> lore = new ArrayList<>();
         lore.add(GOLD+"Golden Bean, Its Golden!");
         lore.add(GOLD+"It Shines Because.. Its Golden!!");
         meta.setLore(lore);
-        meta.addEnchant(Enchantment.LUCK, 1, false);
+        //meta.addEnchant(Enchantment.LUCK, 1, false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         item.setItemMeta(meta);
         golden_bean = item;

@@ -13,7 +13,7 @@ public class BeanEvents implements Listener {
 
     @EventHandler
     public void onRightClick(PlayerInteractEvent event) {
-        if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+        /*if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if (event.getItem() != null) {
                 if (event.getItem().getItemMeta().equals(ItemManager.bean.getItemMeta())) {
                     Player player = event.getPlayer();
@@ -23,6 +23,6 @@ public class BeanEvents implements Listener {
                     player.sendMessage("§6Are!!!");
                 }
             }
-        }
+        }*/ //DONT UNCOMMENT IF YOU DONT WANA SEE YOUR SERVER DESTROYED!!
     }
 }
