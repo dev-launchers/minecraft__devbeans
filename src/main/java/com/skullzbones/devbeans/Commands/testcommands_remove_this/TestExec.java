@@ -22,6 +22,9 @@ public class TestExec {
                 Player player = (Player) sender;
                 player.getInventory().addItem(ItemManager.golden_bean);
                 player.getInventory().addItem(ItemManager.bean);
+                player.getInventory().addItem(ItemManager.build_bean);
+                player.getInventory().addItem(ItemManager.build_bean_pod_wand);
+                player.getInventory().addItem(ItemManager.build_bean_vines);
                 return true;
             }
         };
