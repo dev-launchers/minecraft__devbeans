@@ -33,7 +33,7 @@ public class BuildBeanWandEvent implements Listener {
 
                     Block b = BlockFaces.getBlockEntity(player);
 
-                    if(b.getType().equals(Material.AIR) && false){  //FALSE
+                    if(!b.getType().equals(Material.AIR)){  //FALSE
                         player.sendMessage("You need to point at a block!");
                     }
                     else {
