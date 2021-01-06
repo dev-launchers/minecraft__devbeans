@@ -2,18 +2,21 @@ package com.skullzbones.devbeans.Events.allevents;
 
 import com.skullzbones.devbeans.Items.ItemManager;
 import org.apache.commons.lang.CharUtils;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Sign;
 import org.bukkit.block.data.type.WallSign;
-import org.bukkit.entity.ItemFrame;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.hanging.HangingBreakByEntityEvent;
+import org.bukkit.event.hanging.HangingPlaceEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -22,7 +25,68 @@ import org.bukkit.util.Vector;
 
 import com.skullzbones.devbeans.Tools.BlockFaces;
 
+import java.beans.Visibility;
+
+import static org.bukkit.Bukkit.getLogger;
+import static org.bukkit.event.EventPriority.HIGHEST;
+
 public class BuildBeanWandEvent implements Listener {
+
+
+    @EventHandler
+    public void onDamage(EntityDamageByEntityEvent e) {
+        if (e.getEntity() instanceof ItemFrame) {
+            Entity entity = e.getDamager();
+            if(!(entity instanceof Player)) return;
+            Player player = (Player) e.getDamager();
+            ItemFrame itemFrame = (ItemFrame) e.getEntity();
+            if (itemFrame.getItem().equals(ItemManager.build_bean)) {
+                player.sendMessage("Yay! Sweet Bean Sweet Bean!");
+                player.getInventory().addItem(ItemManager.build_bean);
+                itemFrame.remove();
+            }
+        }
+    }
+
+
+/*    @EventHandler
+    public void onFrameBreak(HangingBreakByEntityEvent event) {
+        //Do nothing if not a player
+*//*        if(!(event.getRemover() instanceof Player))
+            return;*//*
+        getLogger().info("Break?");
+
+        if(event.getEntity() instanceof ItemFrame && event.getEntity().equals(ItemManager.build_bean)) {
+            event.setCancelled(true);
+        }
+
+    }*/
+
+    @EventHandler(ignoreCancelled = true)
+    public void onBlockBreak(BlockBreakEvent event) {
+        for (Entity entity : event.getBlock().getWorld().getNearbyEntities(event.getBlock().getLocation(), 2, 2, 2)) {
+            if (entity instanceof ItemFrame && entity.getLocation().getBlock().getRelative(((ItemFrame) entity).getAttachedFace()).equals(event.getBlock())) {
+                ItemFrame itemFrame = (ItemFrame) entity;
+
+                //Your code
+                if (itemFrame.getItem().equals(ItemManager.build_bean)) {
+                    event.setCancelled(true);
+                    break;
+                }
+            }
+        }
+    }
+
+/*    @EventHandler
+    public void onFramePlace(HangingPlaceEvent event) {
+
+        Player player = event.getPlayer();
+        if(event.getEntity() instanceof ItemFrame && player.getGameMode() == GameMode.CREATIVE) {
+            event.setCancelled(true);
+            player.sendMessage(ChatColor.RED + ChatColor.BOLD.toString() + "You cannot do that while in creative mode!");
+        }
+
+    }*/
 
     @EventHandler
     public void onRightClick(PlayerInteractEvent event) {
@@ -53,8 +117,6 @@ public class BuildBeanWandEvent implements Listener {
 
 
                     }*/
-
-                    player.sendMessage("§6Are!!!");
                 }
             }
         } //DONT UNCOMMENT IF YOU DONT WANA SEE YOUR SERVER DESTROYED!!

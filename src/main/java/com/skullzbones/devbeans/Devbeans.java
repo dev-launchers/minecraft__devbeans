@@ -15,6 +15,16 @@ public final class Devbeans extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        if (!Bukkit.getPluginManager().isPluginEnabled("HolographicDisplays")) {
+            getLogger().severe("*** HolographicDisplays is not installed or not enabled. ***");
+            getLogger().severe("*** This plugin will be disabled. ***");
+            this.setEnabled(false);
+            return;
+        }
+
+        Hologram hologram = HologramsAPI.createHologram(plugin, where);
+
+
         Bukkit.getServer().getLogger().info("DevBeans Plugin Enabled!");
 
         ItemManager.init();
