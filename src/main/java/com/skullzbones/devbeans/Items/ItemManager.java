@@ -117,4 +117,11 @@ public class ItemManager {
         build_bean_vines = item;
     }
 
+    public static ItemStack setName(ItemStack is, String name){
+        ItemMeta m = is.getItemMeta();
+        m.setDisplayName(name);
+        is.setItemMeta(m);
+        return is;
+    }
+
 }

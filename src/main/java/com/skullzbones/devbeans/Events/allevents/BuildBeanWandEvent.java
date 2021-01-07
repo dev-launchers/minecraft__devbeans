@@ -1,6 +1,10 @@
 package com.skullzbones.devbeans.Events.allevents;
 
+import com.google.common.collect.Lists;
+import com.skullzbones.devbeans.Devbeans;
 import com.skullzbones.devbeans.Items.ItemManager;
+import com.skullzbones.devbeans.Tools.SignInput;
+import net.md_5.bungee.api.ChatColor;
 import org.apache.commons.lang.CharUtils;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -24,6 +28,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import com.skullzbones.devbeans.Tools.BlockFaces;
+
 
 import java.beans.Visibility;
 
@@ -105,7 +110,18 @@ public class BuildBeanWandEvent implements Listener {
                         player.addPotionEffect(invincibility);
                         Location bl = b.getLocation();
                         ItemFrame itm = player.getWorld().spawn(bl, ItemFrame.class);
-                        itm.setItem(ItemManager.build_bean);
+                        itm.setVisible(false);
+
+                        Devbeans.signMenuFactory
+                                .newMenu(Lists.newArrayList("&a&lNyce!", "&4", "&4", "&3"))
+                                .reopenIfFail()
+                                .response((player1, lines) -> {
+                                    Bukkit.getServer().getLogger().info(lines[0]);
+                                    itm.setItem(ItemManager.setName(ItemManager.build_bean,ChatColor.YELLOW + "By "+ChatColor.BLUE +player1.getDisplayName()+", "+ChatColor.DARK_GREEN+lines[0]));
+                                    return true;
+                                    //return false; // failure. becaues reopenIfFail was called, menu will reopen when closed.
+                                })
+                                .open(player);
 
                     }
 
