@@ -24,7 +24,7 @@ public class TestExec {
                 player.getInventory().addItem(ItemManager.bean);
                 player.getInventory().addItem(ItemManager.build_bean);
                 player.getInventory().addItem(ItemManager.build_bean_pod_wand);
-                player.getInventory().addItem(ItemManager.build_bean_vines);
+                player.getInventory().addItem(ItemManager.build_bean_bucket);
                 return true;
             }
         };

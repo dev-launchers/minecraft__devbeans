@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -17,7 +18,6 @@ public class ItemManager {
     public static ItemStack golden_bean;
     public static ItemStack build_bean;
     public static ItemStack build_bean_pod_wand;
-    public static ItemStack build_bean_vines;
     public static ItemStack build_bean_bucket;
 
     public static void init() {
@@ -25,7 +25,7 @@ public class ItemManager {
         creatgoldenBean();
         createBuildBean();
         createBuildBeanWand();
-        createBuildBeanVines();
+        createBuildBeanBucket();
     }
 
 
@@ -100,21 +100,21 @@ public class ItemManager {
     }
 
 
-    private static void createBuildBeanVines() {
-        ItemStack item = new ItemStack(Material.SOUL_TORCH, 1);
+    private static void createBuildBeanBucket() {
+        ItemStack item = new ItemStack(Material.HOPPER, 1);
         ItemMeta meta = item.getItemMeta();
 
         meta.setCustomModelData(92);
 
-        meta.setDisplayName(GOLD+"Bean Torch!");
+        meta.setDisplayName(GOLD+"Bean Bucket!");
         List<String> lore = new ArrayList<>();
-        lore.add(GOLD+"Vines to get your esteemed beans!!");
-        lore.add(GOLD+"Dont farm it pal, you will anger the heavens!");
+        lore.add(GOLD+"Can you pass your beans to this bucket?");
+        lore.add(GOLD+"Farm your beans by depositing them to here!");
         meta.setLore(lore);
         //meta.addEnchant(Enchantment.LUCK, 1, false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         item.setItemMeta(meta);
-        build_bean_vines = item;
+        build_bean_bucket = item;
     }
 
     public static ItemStack setName(ItemStack is, String name){
@@ -122,6 +122,13 @@ public class ItemManager {
         m.setDisplayName(name);
         is.setItemMeta(m);
         return is;
+    }
+
+    public static void removeInventoryItems(Player player) {
+        int a = player.getInventory().getItemInMainHand().getAmount();
+        if(a==1) {a=1; player.getInventory().removeItem(build_bean); }
+        else a--;
+        player.getInventory().getItemInMainHand().setAmount(a);
     }
 
 }
