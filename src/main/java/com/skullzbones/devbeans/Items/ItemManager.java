@@ -126,9 +126,9 @@ public class ItemManager {
 
     public static void removeInventoryItems(Player player) {
         int a = player.getInventory().getItemInMainHand().getAmount();
-        if(a==1) {a=1; player.getInventory().removeItem(build_bean); }
-        else a--;
         player.getInventory().getItemInMainHand().setAmount(a);
+        if(a==1) {a=1; player.getInventory().removeItem(player.getInventory().getItemInMainHand()); }
+        else a--;
     }
 
 }

@@ -54,7 +54,7 @@ public class BuildBeanWandEvent implements Listener {
                 if(itemFrame.getItem().getItemMeta().getDisplayName().contains(player.getDisplayName())){
                     setCooldowns(player,1);
                     player.sendMessage("Item has been placed in your inventory!!");
-                    player.getInventory().addItem(ItemManager.build_bean);
+                    player.getInventory().addItem(itemFrame.getItem());
                     itemFrame.remove();
                     return;
                 }
