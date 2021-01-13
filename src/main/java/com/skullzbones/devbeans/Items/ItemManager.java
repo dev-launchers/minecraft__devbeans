@@ -104,7 +104,6 @@ public class ItemManager {
         ItemStack item = new ItemStack(Material.HOPPER, 1);
         ItemMeta meta = item.getItemMeta();
 
-        meta.setCustomModelData(92);
 
         meta.setDisplayName(GOLD+"Bean Bucket!");
         List<String> lore = new ArrayList<>();
